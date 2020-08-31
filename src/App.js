@@ -1,9 +1,8 @@
 import React, { useState } from "react";
+require("dotenv").config();
 
-const api = {
-  key: "4f50a5548dac0cf6e7519f882e4c0368",
-  base: "https://api.openweathermap.org/data/2.5/",
-};
+const api_key = process.env;
+const base = "https://api.openweathermap.org/data/2.5/";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -11,7 +10,7 @@ function App() {
 
   const search = (evt) => {
     if (evt.key === "Enter") {
-      fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
+      fetch(`${base}weather?q=${query}&units=metric&APPID=${api_key}`)
         .then((res) => res.json())
         .then((result) => {
           setWeather(result);
